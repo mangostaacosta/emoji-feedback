@@ -54,6 +54,7 @@ app.get("/api/emoji-stats", (req,res) => {
 	const countsByOffice = {} ;
 	
 	try {
+		/*
 		const fileStream = fs.createReadStream( filePath ) ;
 		const readLine = readline.createInterface({
 			input: fileStream,
@@ -63,8 +64,16 @@ app.get("/api/emoji-stats", (req,res) => {
 		for await (const line of rl) {
       const parts = line.trim().split(",");
       const [timestamp, office, emoji] = parts;
+			*/
+      
+		const lines = fs.readFileSync(filePath, "utf-8").split("\n");
 
-      if (!emoji || !office) continue;
+		lines.forEach((line) => {
+      const parts = line.trim().split(",");
+      const [timestamp, office, emoji] = parts;
+			
+			
+			if (!emoji || !office) return;
 
       const normalizedOffice = office.trim();
       const normalizedEmoji = emoji.trim();
