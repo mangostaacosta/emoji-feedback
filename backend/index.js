@@ -40,12 +40,51 @@ app.get("/api/feedback", (req, res) => {
   res.json(feedbackData);
 });
 */
+
 // Route to download the CSV
 app.get("/api/export", (req, res) => {
   const filePath = path.join(__dirname, "feedback.csv");
   res.download(filePath, "feedback.csv");
 });
 
+
+//leer el CSV
+app.get("/api/emoji-stats", (req,res) => {
+	const filePath = path.join(__dirname, "feedback.csv");
+	const countsByOffice = {} ;
+	
+	try {
+		const fileStream = fs.createReadStream( filePath ) ;
+		const readLine = readline.createInterface({
+			input: fileStream,
+			crlfDelay: Infinity, 
+		});
+		
+		for await (const line of rl) {
+      const parts = line.trim().split(",");
+      const [timestamp, office, emoji] = parts;
+
+      if (!emoji || !office) continue;
+
+      const normalizedOffice = office.trim();
+      const normalizedEmoji = emoji.trim();
+
+      if (!countsByOffice[normalizedOffice]) {
+        countsByOffice[normalizedOffice] = { happy: 0, neutral: 0, sad: 0 };
+      }
+
+      if (countsByOffice[normalizedOffice][normalizedEmoji] !== undefined) {
+        countsByOffice[normalizedOffice][normalizedEmoji]++;
+      }
+    }
+		
+		res.json(countsByOffice);
+		
+  } catch (err) {
+    console.error("Error reading CSV:", err);
+    res.status(500).json({ error: "Failed to read feedback data." });
+  }	
+});
 
 
 app.listen(PORT, () => {

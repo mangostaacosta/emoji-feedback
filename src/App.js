@@ -51,12 +51,15 @@ function App() {
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SurveyPage from "./SurveyPage";
+import ResultsPage from "./ResultsPage";
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/survey/:office" element={<SurveyPage />} />
+        <Route path="/results" element={<ResultsPage />} />
+				
         {/* You can add more routes here later */}
       </Routes>
     </Router>
