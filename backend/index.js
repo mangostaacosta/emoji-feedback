@@ -87,6 +87,7 @@ app.get("/api/emoji-stats", (req,res) => {
       }
     }
 		
+		console.log("countsDyOffice JSON ready to go");
 		res.json(countsByOffice);
 		
   } catch (err) {
