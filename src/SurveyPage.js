@@ -1,21 +1,17 @@
-/*
-import logo from './logo.svg';
+import { useParams } from "react-router-dom";
 import { useState } from "react";
-import './App.css';
+import "./App.css";
 
-function App() {
-	const [submitted, setSubmitted] = useState(false);
+function SurveyPage() {
+  const { office } = useParams();
+  const [submitted, setSubmitted] = useState(false);
   const [emoji, setEmoji] = useState(null);
-
-  // Simulate getting office name from URL (e.g., /survey/xyz123)
-  const officeName = "Barcelona Office";
 
   const handleClick = (face) => {
     setEmoji(face);
     setSubmitted(true);
 
-    // Simulate sending to backend (replace this with a real API later)
-    //fetch("https://your-backend.com/api/feedback", {
+    //fetch("https://your-backend.onrender.com/api/feedback", {
 		//fetch("http://localhost:5000/api/feedback", {
 		fetch("https://emoji-feedback.onrender.com/api/feedback", {
       method: "POST",
@@ -24,17 +20,28 @@ function App() {
       },
       body: JSON.stringify({
         emoji: face,
-        office: officeName,
+        office: office,
         timestamp: new Date().toISOString(),
       }),
     });
+		
+		// Reset after 5 seconds
+		setTimeout(() => {
+			setSubmitted(false);
+			setEmoji(null);
+		}, 3000);		
+		
   };
+
+  const capitalizedOffice = office
+    ? office.charAt(0).toUpperCase() + office.slice(1)
+    : "Office";
 
   return (
     <div className="App">
       {!submitted ? (
         <>
-          <h2>How was your experience in {officeName}?</h2>
+          <h2>Por favor califica tu experiencia hoy en {capitalizedOffice}?</h2>
           <div className="emoji-buttons">
             <button onClick={() => handleClick("happy")}>😊</button>
             <button onClick={() => handleClick("neutral")}>😐</button>
@@ -42,25 +49,14 @@ function App() {
           </div>
         </>
       ) : (
-        <h3>Thanks for your feedback! ({emoji})</h3>
+				<>
+					<h3>Gracias por tu calificación!</h3>
+					<h3>({emoji})</h3>
+					<h3>En 3 segundos podras volver a calificarnos</h3>
+				</>
       )}
     </div>
   );
 }
-*/
 
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import SurveyPage from "./SurveyPage";
-
-function App() {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/survey/:office" element={<SurveyPage />} />
-        {/* You can add more routes here later */}
-      </Routes>
-    </Router>
-  );
-}
-
-export default App;
+export default SurveyPage;
