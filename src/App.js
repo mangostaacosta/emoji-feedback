@@ -14,7 +14,8 @@ function App() {
     setSubmitted(true);
 
     // Simulate sending to backend (replace this with a real API later)
-    fetch("https://your-backend.com/api/feedback", {
+    //fetch("https://your-backend.com/api/feedback", {
+		fetch("http://localhost:5000/api/feedback", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
