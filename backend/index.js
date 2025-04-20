@@ -85,9 +85,9 @@ app.get("/api/emoji-stats", (req,res) => {
       if (countsByOffice[normalizedOffice][normalizedEmoji] !== undefined) {
         countsByOffice[normalizedOffice][normalizedEmoji]++;
       }
-    }
+    });
 		
-		console.log("countsDyOffice JSON ready to go");
+		console.log("countsDyOffice2 JSON ready to go");
 		res.json(countsByOffice);
 		
   } catch (err) {
