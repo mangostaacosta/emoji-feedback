@@ -23,12 +23,12 @@ app.post("/api/feedback", (req, res) => {
 	const filePath = path.join(__dirname, "feedback.csv");
 	
 	fs.appendFile(filePath, row, (err) => {
-  if (err) {
-    console.error("Error writing to CSV file:", err);
-    return res.status(500).json({ error: "Failed to save feedback" });
-  }
-  console.log("Feedback saved to CSV");
-  res.status(200).json({ message: "Feedback saved" });
+		if (err) {
+			console.error("Error writing to CSV file:", err);
+			return res.status(500).json({ error: "Failed to save feedback" });
+		}
+		console.log("Feedback saved to CSV");
+//		res.status(200).json({ message: "Feedback saved" });
 	});
 
   feedbackData.push({ emoji, office, timestamp });
