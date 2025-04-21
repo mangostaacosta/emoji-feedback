@@ -1,3 +1,16 @@
+//20250420 posgres conection
+require("dotenv").config();
+console.log(process.env.SUPABASE_URL); // Just for test
+
+const { Pool } = require("pg");
+
+const pool = new Pool({
+	connectionString: process.env.DATABASE_URL,
+  ssl: { rejectUnauthorized: false },
+});
+
+
+
 const express = require("express");
 const cors = require("cors");
 const app = express();
@@ -30,6 +43,20 @@ app.post("/api/feedback", (req, res) => {
 		console.log("Feedback saved to CSV");
 //		res.status(200).json({ message: "Feedback saved" });
 	});
+	
+	//20250420 posgres conection
+	pool.query(
+		"INSERT INTO feedback (timestamp, office, emoji) VALUES ($1, $2, $3)",
+		[timestamp, office, emoji],
+		(err, result) => {
+			if (err) {
+				console.error("Database error:", err);
+			} else {
+				console.log("Feedback also saved to database");
+			}
+		}
+	);
+	
 
   feedbackData.push({ emoji, office, timestamp });
   console.log("Received feedback:", { emoji, office, timestamp });

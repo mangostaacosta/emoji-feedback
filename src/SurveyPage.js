@@ -10,9 +10,10 @@ function SurveyPage() {
   const handleClick = (face) => {
     setEmoji(face);
     setSubmitted(true);
-
-    //fetch("https://your-backend.onrender.com/api/feedback", {
-		//fetch("http://localhost:5000/api/feedback", {
+		
+		//Para ejecutar backend en localhost
+    //fetch("http://localhost:5000/api/feedback", {
+		//Para ejecutar backend en RENDER 
 		fetch("https://emoji-feedback.onrender.com/api/feedback", {
       method: "POST",
       headers: {
