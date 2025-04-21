@@ -2,13 +2,18 @@
 require("dotenv").config();
 console.log(process.env.SUPABASE_URL); // Just for test
 
+const { createClient } = require("@supabase/supabase-js");
+
+const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
+
+/*
 const { Pool } = require("pg");
 
 const pool = new Pool({
 	connectionString: process.env.DATABASE_URL,
   ssl: { rejectUnauthorized: false },
 });
-
+*/
 
 
 const express = require("express");
@@ -45,6 +50,7 @@ app.post("/api/feedback", (req, res) => {
 	});
 	
 	//20250420 posgres conection
+	/*
 	pool.query(
 		"INSERT INTO feedback (timestamp, office, emoji) VALUES ($1, $2, $3)",
 		[timestamp, office, emoji],
@@ -56,6 +62,21 @@ app.post("/api/feedback", (req, res) => {
 			}
 		}
 	);
+	*/
+	
+  // Save to Supabase (no await)
+  supabase
+    .from("feedback")
+    .insert([{ emoji, office, timestamp }])
+    .then(({ data, error }) => {
+      if (error) {
+        console.error("Supabase insert error:", error);
+      } else {
+        console.log("Saved to Supabase:", data);
+      }
+    });
+
+  console.log("Saved to Supabase:", data);
 	
 
   feedbackData.push({ emoji, office, timestamp });
