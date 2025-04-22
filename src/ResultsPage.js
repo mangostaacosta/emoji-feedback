@@ -39,7 +39,8 @@ function ResultsPage() {
   const [stats, setStats] = useState(null);
 
   useEffect(() => {
-    fetch("https://emoji-feedback.onrender.com/api/emoji-stats")
+    //fetch("https://emoji-feedback.onrender.com/api/emoji-stats")
+    fetch("https://emoji-feedback.onrender.com/api/db-stats")
       .then((res) => res.json())
       .then((data) => setStats(data))
       .catch((err) => {
