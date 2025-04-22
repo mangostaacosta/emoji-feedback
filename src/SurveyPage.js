@@ -2,6 +2,18 @@ import { useParams } from "react-router-dom";
 import { useState } from "react";
 import "./App.css";
 
+
+function formatOfficeName(slug) {
+  // 1. Remove trailing numbers + dashes (e.g. "-2024", "-1")
+  const cleanedSlug = slug.replace(/[-_]*\d+$/, "");
+	
+	return cleanedSlug
+    .split("-")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+}
+
+
 function SurveyPage() {
   const { office } = useParams();
   const [submitted, setSubmitted] = useState(false);
@@ -30,19 +42,23 @@ function SurveyPage() {
 		setTimeout(() => {
 			setSubmitted(false);
 			setEmoji(null);
-		}, 3000);		
+		}, 5000);		
 		
   };
 
-  const capitalizedOffice = office
+  /*
+	const capitalizedOffice = office
     ? office.charAt(0).toUpperCase() + office.slice(1)
     : "Office";
-
+	*/
+	
+	const capitalizedOffice = formatOfficeName(office) ;
+	
   return (
     <div className="App">
       {!submitted ? (
         <>
-          <h2>Por favor califica tu experiencia hoy en {capitalizedOffice}?</h2>
+          <h2>¿Cómo fue tu experiencia hoy con {capitalizedOffice}?</h2>
           <div className="emoji-buttons">
             <button onClick={() => handleClick("happy")}>😊</button>
             <button onClick={() => handleClick("neutral")}>😐</button>
@@ -51,9 +67,9 @@ function SurveyPage() {
         </>
       ) : (
 				<>
-					<h3>Gracias por tu calificación!</h3>
-					<h3>({emoji})</h3>
-					<h3>En 3 segundos podras volver a calificarnos</h3>
+					<h2>Gracias por tu calificación:</h2>
+					<h2>({emoji})</h2>
+					<p>Powered By SOPHIX TOO®</p>
 				</>
       )}
     </div>

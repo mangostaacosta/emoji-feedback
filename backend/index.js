@@ -144,6 +144,37 @@ app.get("/api/emoji-stats", (req,res) => {
   }	
 });
 
+app.get("/api/db-stats", (req, res) => {
+  supabase
+    .from("feedback")
+    .select("office, emoji")
+    .then(({ data, error }) => {
+      if (error) {
+        console.error("Supabase query error:", error);
+        return res.status(500).json({ error: "Failed to fetch feedback data." });
+      }
+			
+			const countsByOffice = {};
+
+      data.forEach(({ office, emoji }) => {
+        if (!office || !emoji) return;
+
+        const normalizedOffice = office.trim();
+        const normalizedEmoji = emoji.trim();
+
+        if (!countsByOffice[normalizedOffice]) {
+          countsByOffice[normalizedOffice] = { happy: 0, neutral: 0, sad: 0 };
+        }
+
+        if (countsByOffice[normalizedOffice][normalizedEmoji] !== undefined) {
+          countsByOffice[normalizedOffice][normalizedEmoji]++;
+        }
+      });
+
+      res.json(countsByOffice);
+    });
+});
+
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
