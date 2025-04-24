@@ -57,11 +57,11 @@ function ResultsPage() {
         Object.entries(stats).map(([office, counts]) => (
           <div key={office} style={{ marginBottom: "1.5rem" }}>
             <h3>📍 {office}</h3>
-            <ul>
-              <li>😊 Happy: {counts.happy}</li>
-              <li>😐 Neutral: {counts.neutral}</li>
-              <li>😞 Sad: {counts.sad}</li>
-            </ul>
+            <div>
+              <p>😊 Happy: {counts.happy}</p>
+              <p>😐 Neutral: {counts.neutral}</p>
+              <p>😞 Sad: {counts.sad}</p>
+            </div>
           </div>
         ))
       )}

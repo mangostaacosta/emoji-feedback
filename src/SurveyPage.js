@@ -67,9 +67,9 @@ function SurveyPage() {
         </>
       ) : (
 				<>
-					<h2>Gracias por tu calificación: "{emoji}"</h2>
-					<h2> - </h2>
-					<p>Powered By SOPHIX TOO ®</p>
+					<h2>Gracias por tu calificación:</h2>
+					<h2>[{emoji}]</h2>
+					<p>Powered By SOPHIX_TOO ®</p>
 				</>
       )}
     </div>
