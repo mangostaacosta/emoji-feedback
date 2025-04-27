@@ -32,6 +32,11 @@ let feedbackData = [];
 
 app.post("/api/feedback", (req, res) => {
 	const { emoji, office, timestamp } = req.body;
+	
+	const userIp = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
+  const userAgent = req.headers["user-agent"];
+	
+	console.log("Feedback from IP:", userIp, "Device:", userAgent);
 
   if (!emoji || !office || !timestamp) {
     return res.status(400).json({ error: "Missing fields" });
