@@ -3,3 +3,5 @@ prueba ñ eñe
 
 C:\Docs\rma\2019\Proyectos\smiling
 cd /c/Docs/rma/2019/Proyectos/smiling
+npm start
+

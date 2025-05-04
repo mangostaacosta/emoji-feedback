@@ -40,10 +40,17 @@ function MyResultsPage() {
         <p>No data found for this office.</p>
       ) : (
         <div>
-          <p>😊 Happy: {stats.happy}</p>
-          <p>😐 Neutral: {stats.neutral}</p>
-          <p>😞 Sad: {stats.sad}</p>
-        </div>
+					<p>😡 Muy_triste: {stats.muy_triste}</p>
+					<p>😞 Triste: {stats.triste}</p>
+					<p>😐 Neutral: {stats.neutral}</p>
+					<p>😊 Happy: {stats.feliz}</p>
+					<p>😁 Muy_feliz: {stats.muy_feliz}</p>
+					<p>😐 Neutral: {stats.neutral}</p>
+					<p>😞 Sad: {stats.sad}</p>
+					<p>😊 Happy: {stats.happy}</p>
+				
+				
+				</div>
       )}
     </div>
   );

@@ -58,9 +58,14 @@ function ResultsPage() {
           <div key={office} style={{ marginBottom: "1.5rem" }}>
             <h3>📍 {office}</h3>
             <div>
-              <p>😊 Happy: {counts.happy}</p>
+							<p>😡 Muy_triste: {counts.muy_triste}</p>
+							<p>😞 Triste: {counts.triste}</p>
+							<p>😐 Neutral: {counts.neutral}</p>
+							<p>😊 Happy: {counts.feliz}</p>
+							<p>😁 Muy_feliz: {counts.muy_feliz}</p>
               <p>😐 Neutral: {counts.neutral}</p>
               <p>😞 Sad: {counts.sad}</p>
+							<p>😊 Happy: {counts.happy}</p>
             </div>
           </div>
         ))

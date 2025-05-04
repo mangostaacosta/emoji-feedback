@@ -132,7 +132,15 @@ app.get("/api/emoji-stats", (req,res) => {
       const normalizedEmoji = emoji.trim();
 
       if (!countsByOffice[normalizedOffice]) {
-        countsByOffice[normalizedOffice] = { happy: 0, neutral: 0, sad: 0 };
+        countsByOffice[normalizedOffice] = { 
+						muy_feliz: 0,
+						feliz: 0, 
+						neutral: 0, 
+						triste: 0,
+						muy_triste: 0,
+						happy: 0,
+						sad: 0,
+					};
       }
 
       if (countsByOffice[normalizedOffice][normalizedEmoji] !== undefined) {
@@ -168,7 +176,15 @@ app.get("/api/db-stats", (req, res) => {
         const normalizedEmoji = emoji.trim();
 
         if (!countsByOffice[normalizedOffice]) {
-          countsByOffice[normalizedOffice] = { happy: 0, neutral: 0, sad: 0 };
+          countsByOffice[normalizedOffice] = { 
+						muy_feliz: 0,
+						feliz: 0, 
+						neutral: 0, 
+						triste: 0,
+						muy_triste: 0,
+						happy: 0,
+						sad: 0,
+					};
         }
 
         if (countsByOffice[normalizedOffice][normalizedEmoji] !== undefined) {
