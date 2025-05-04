@@ -61,9 +61,8 @@ function ResultsPage() {
 							<p>😡 Muy_triste: {counts.muy_triste}</p>
 							<p>😞 Triste: {counts.triste}</p>
 							<p>😐 Neutral: {counts.neutral}</p>
-							<p>😊 Happy: {counts.feliz}</p>
+							<p>😊 Feliz: {counts.feliz}</p>
 							<p>😁 Muy_feliz: {counts.muy_feliz}</p>
-              <p>😐 Neutral: {counts.neutral}</p>
               <p>😞 Sad: {counts.sad}</p>
 							<p>😊 Happy: {counts.happy}</p>
             </div>
