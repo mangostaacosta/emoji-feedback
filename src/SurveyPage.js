@@ -7,9 +7,14 @@ function formatOfficeName(slug) {
   // 1. Remove trailing numbers + dashes (e.g. "-2024", "-1")
   const cleanedSlug = slug.replace(/[-_]*\d+$/, "");
 	
-	return cleanedSlug
+  return cleanedSlug
     .split("-")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .map(word => {
+      if (word.length >= 3) {
+        return word.charAt(0).toUpperCase() + word.slice(1);
+      }
+      return word; // Leave short words (like "la", "uk", "hq") untouched
+    })
     .join(" ");
 }
 
