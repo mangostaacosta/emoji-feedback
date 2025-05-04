@@ -70,9 +70,13 @@ app.post("/api/feedback", (req, res) => {
 	*/
 	
   // Save to Supabase (no await)
+	const ipUserAgent = `${userIp} | ${userAgent}`;
+	
+	console.log("Concat from IP:", ipUserAgent );
+	
   supabase
     .from("feedback")
-    .insert([{ emoji, office, timestamp }])
+    .insert([{ emoji, office, timestamp , ip_user_agent: ipUserAgent }])
     .then(({ data, error }) => {
       if (error) {
         console.error("Supabase insert error:", error);
