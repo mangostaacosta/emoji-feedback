@@ -35,7 +35,8 @@ function MyResultsPage() {
 
   return (
     <div className="App">
-      <h2>Feedback Results for {formattedOffice}</h2>
+			<h2>Feedback Results for {office}</h2>
+			<h2>Feedback Results for {formattedOffice}</h2>
       {!stats ? (
         <p>No data found for this office.</p>
       ) : (
