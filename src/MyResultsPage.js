@@ -32,11 +32,14 @@ function MyResultsPage() {
   }
 
   const formattedOffice = formatOfficeName(office);
-
+	
+	//<h2>Feedback Results for {formattedOffice}</h2>
+	//<p>😞 Sad: {stats.sad}</p>
+	//<p>😊 Happy: {stats.happy}</p>
   return (
     <div className="App">
 			<h2>Feedback Results for {office}</h2>
-			//<h2>Feedback Results for {formattedOffice}</h2>
+			
       {!stats ? (
         <p>No data found for this office.</p>
       ) : (
@@ -45,11 +48,7 @@ function MyResultsPage() {
 					<p>😞 Triste: {stats.triste}</p>
 					<p>😐 Neutral: {stats.neutral}</p>
 					<p>😊 Feliz: {stats.feliz}</p>
-					<p>😁 Muy_feliz: {stats.muy_feliz}</p>
-					//<p>😞 Sad: {stats.sad}</p>
-					//<p>😊 Happy: {stats.happy}</p>
-				
-				
+					<p>😁 Muy_feliz: {stats.muy_feliz}</p>			
 				</div>
       )}
     </div>

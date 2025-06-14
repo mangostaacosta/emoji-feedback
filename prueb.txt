@@ -24,5 +24,8 @@ Entonces para poder deploy cambios y arreglos
 Abrir Git Bash en el escritorio
 cd /c/Docs/rma/2019/Proyectos/smiling   //ir a la carpeta del proyecto
 git --version    //validar que si está instalado git
+git init
+git commit -m "V7.5 arreglar dobel encabezado my results" //esto es como para darle un nombre de version a los cambios
+git push 	//esto es lo que manda la nueva versión a github
 
 
