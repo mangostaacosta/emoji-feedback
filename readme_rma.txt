@@ -7,6 +7,8 @@ https://emoji-feedback.onrender.com
 https://dashboard.render.com/web/srv-d0245qbe5dus73bdkhn0/logs
 https://supabase.com/dashboard/project/juqoxefjgqqhyhwglhjh/editor/17267
 
+usar consola de GIT BASH que está en el escritorio
+ 
 
 C:\Docs\rma\2019\Proyectos\smiling
 cd /c/Docs/rma/2019/Proyectos/smiling
@@ -25,7 +27,8 @@ Abrir Git Bash en el escritorio
 cd /c/Docs/rma/2019/Proyectos/smiling   //ir a la carpeta del proyecto
 git --version    //validar que si está instalado git
 git init
-git commit -m "V7.5 arreglar dobel encabezado my results" //esto es como para darle un nombre de version a los cambios
+git add. 		//para indicar que se quiere añadir todo lo que ha cambiado
+git commit -m "V7.5 arreglar doble encabezado myresults" //esto es como para darle un nombre de version a los cambios
 git push 	//esto es lo que manda la nueva versión a github
 
 
