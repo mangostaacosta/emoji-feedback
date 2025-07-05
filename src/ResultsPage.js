@@ -75,7 +75,9 @@ function ResultsPage() {
             </tr>
           </thead>
           <tbody>
-            {Object.entries(stats).map(([office, counts]) => (
+						{Object.entries(stats)
+							.sort(([, a], [, b]) => new Date(b.last_updated) - new Date(a.last_updated))
+							.map(([office, counts]) => (
               <tr key={office}>
                 <td style={{ borderBottom: "1px solid #eee", fontWeight: "bold", padding: "0.5rem" }}>{office}</td>
                 {emojiLabels.map(({ key }) => (
