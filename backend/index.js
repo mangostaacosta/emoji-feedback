@@ -164,7 +164,7 @@ app.get("/api/emoji-stats", (req,res) => {
 app.get("/api/db-stats", (req, res) => {
   supabase
     .from("feedback")
-    .select("office, emoji")
+		.select("office, emoji, timestamp")
     .then(({ data, error }) => {
       if (error) {
         console.error("Supabase query error:", error);
@@ -173,7 +173,7 @@ app.get("/api/db-stats", (req, res) => {
 			
 			const countsByOffice = {};
 
-      data.forEach(({ office, emoji }) => {
+			data.forEach(({ office, emoji, timestamp }) => {
         if (!office || !emoji) return;
 
         const normalizedOffice = office.trim();
@@ -188,12 +188,21 @@ app.get("/api/db-stats", (req, res) => {
 						muy_triste: 0,
 						happy: 0,
 						sad: 0,
+						last_updated: timestamp,
 					};
         }
 
         if (countsByOffice[normalizedOffice][normalizedEmoji] !== undefined) {
           countsByOffice[normalizedOffice][normalizedEmoji]++;
         }
+				
+				// Update last_updated if newer timestamp is found
+        const currentLatest = new Date(countsByOffice[normalizedOffice].last_updated);
+        const currentTimestamp = new Date(timestamp);
+        if (currentTimestamp > currentLatest) {
+          countsByOffice[normalizedOffice].last_updated = timestamp;
+        }
+				
       });
 
       res.json(countsByOffice);

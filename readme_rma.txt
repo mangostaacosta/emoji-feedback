@@ -22,6 +22,15 @@ the bachend is based on Express.js hosted in REDNER
 the database is in PostgreSQL hosted in SUPABASE
 I am deploying from GITHUB
 
+Importante sobre "back-end"
+Where is /api/db-stats defined?
+It’s part of your Node.js backend, so you’ll find it in your backend project, likely in:  /backend/index.js
+Inside index.js, you should see something like:
+app.get("/api/db-stats", (req, res) => {
+  // Supabase query and emoji count logic here
+});
+
+
 Entonces para poder deploy cambios y arreglos
 Abrir Git Bash en el escritorio
 cd /c/Docs/rma/2019/Proyectos/smiling   //ir a la carpeta del proyecto
