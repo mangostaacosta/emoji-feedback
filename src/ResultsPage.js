@@ -49,11 +49,13 @@ function ResultsPage() {
   }, []);
 
 	const emojiLabels = [
-    { key: "very_sad", label: "😡" },
-    { key: "sad", label: "😞" },
-    { key: "neutral", label: "😐" },
-    { key: "happy", label: "😊" },
-    { key: "very_happy", label: "😁" },
+    { key: "muy_triste", label: "Muy Triste 😡" },
+    { key: "triste", label: "Triste 😞" },
+    { key: "neutral", label: "Neutral 😐" },
+    { key: "feliz", label: "Feliz 😊" },
+    { key: "muy_feliz", label: "My Feliz 😁" },
+		{ key: "sad", label: "Sad" },
+		{ key: "happy", label: "Happy" }
   ];
 
   return (
