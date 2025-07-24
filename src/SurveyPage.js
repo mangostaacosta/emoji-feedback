@@ -87,7 +87,7 @@ function SurveyPage() {
     <div className="App">
       {!submitted ? (
         <>
-          <h2>¿Cómo te has sentido esta semana con {capitalizedOffice}?</h2>
+          <h2>¿Cómo te has sentido esta semana con {capitalizedOffice}??</h2>
           <div className="emoji-buttons">            
 						<button onClick={() => handleClick("muy_feliz")}>😁</button>
 						<button onClick={() => handleClick("feliz")}>😊</button>
