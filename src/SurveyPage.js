@@ -93,7 +93,7 @@ function SurveyPage() {
     <div className="App">
       {!submitted ? (
         <>
-          <h2>¿Cómo te has sentido esta semana con {capitalizedOffice}??</h2>
+          <h2>¿Cómo te has sentido esta semana con {capitalizedOffice}?</h2>
           <div className="emoji-buttons">            
 						<button onClick={() => handleClick("muy_feliz")}>😁</button>
 						<button onClick={() => handleClick("feliz")}>😊</button>
@@ -101,7 +101,7 @@ function SurveyPage() {
 						<button onClick={() => handleClick("triste")}>😞</button>
 						<button onClick={() => handleClick("muy_triste")}>😡</button>
           </div>
-					<p>Por favor califícanos, así podemos mejorar.</p>
+					<p>Por favor califícanos, así podemos mejorar. Debug — Oficina: {office} → {capitalizedOffice}</p>
 					{average && (
             <p style={{ marginTop: "1rem", fontWeight: "bold" }}>
               Promedio actual ({votes} votos): {average}
