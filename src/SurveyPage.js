@@ -35,7 +35,8 @@ function SurveyPage() {
       .then(data => {
         console.log("Fetched data:", data);				
 				const formattedOffice = formatOfficeName(office);
-        const officeData = data[formattedOffice];
+        //const officeData = data[formattedOffice];
+				const officeData = data[office];
 				console.log("Fetched stats keys:", Object.keys(data));
 				console.log("Formatted office key:", formattedOffice);
 				console.log("Office data found:", officeData);
@@ -101,7 +102,7 @@ function SurveyPage() {
 						<button onClick={() => handleClick("triste")}>😞</button>
 						<button onClick={() => handleClick("muy_triste")}>😡</button>
           </div>
-					<p>Por favor califícanos, así podemos mejorar. Debug — Oficina: {office} → {capitalizedOffice}</p>
+					<p>Por favor califícanos, así podemos mejorar.</p>
 					{average && (
             <p style={{ marginTop: "1rem", fontWeight: "bold" }}>
               Promedio actual ({votes} votos): {average}
