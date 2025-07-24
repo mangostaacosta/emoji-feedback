@@ -171,6 +171,14 @@ app.get("/api/db-stats", (req, res) => {
         return res.status(500).json({ error: "Failed to fetch feedback data." });
       }
 			
+			const emojiScores = {
+        muy_triste: 1,
+        triste: 2,
+        neutral: 3,
+        feliz: 4,
+        muy_feliz: 5,
+      };
+			
 			const countsByOffice = {};
 
 			data.forEach(({ office, emoji, timestamp }) => {
@@ -189,11 +197,16 @@ app.get("/api/db-stats", (req, res) => {
 						happy: 0,
 						sad: 0,
 						last_updated: timestamp,
+						total_votes: 0,
+            score_sum: 0,
+            average_score: 0,
 					};
         }
 
         if (countsByOffice[normalizedOffice][normalizedEmoji] !== undefined) {
           countsByOffice[normalizedOffice][normalizedEmoji]++;
+					countsByOffice[normalizedOffice].total_votes++;
+					countsByOffice[normalizedOffice].score_sum += emojiScores[normalizedEmoji];
         }
 				
 				// Update last_updated if newer timestamp is found
@@ -203,6 +216,14 @@ app.get("/api/db-stats", (req, res) => {
           countsByOffice[normalizedOffice].last_updated = timestamp;
         }
 				
+      });
+			
+			// Finalize average calculation
+      Object.values(countsByOffice).forEach((officeStats) => {
+        if (officeStats.total_votes > 0) {
+          officeStats.average_score = officeStats.score_sum / officeStats.total_votes;
+        }
+        delete officeStats.score_sum; // optional cleanup
       });
 
       res.json(countsByOffice);

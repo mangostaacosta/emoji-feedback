@@ -53,7 +53,7 @@ function ResultsPage() {
     { key: "triste", label: "Triste 😞" },
     { key: "neutral", label: "Neutral 😐" },
     { key: "feliz", label: "Feliz 😊" },
-    { key: "muy_feliz", label: "My Feliz 😁" },
+    { key: "muy_feliz", label: "Muy Feliz 😁" },
 		{ key: "sad", label: "Sad" },
 		{ key: "happy", label: "Happy" }
   ];

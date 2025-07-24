@@ -1,3 +1,11 @@
+
+20240713 funcionalidad de mostrar promedio en tiempo real de la encuesta
+	la funcionalidad nueva no ha sido ni probada no desplegada
+	se creo un archivo SurveyPage2.js con el nuevo código
+	una forma de desplegar sería renombrar el archivo actual SurveyPage.js a un nombre de backup y despues de eso renombrar el 2 a SurveyPage.js 
+	
+
+
 prueba ñ eñe
 á a con tilde
 
@@ -36,7 +44,7 @@ Abrir Git Bash en el escritorio
 cd /c/Docs/rma/2019/Proyectos/smiling   //ir a la carpeta del proyecto
 git --version    //validar que si está instalado git
 git init
-git add. 		//para indicar que se quiere añadir todo lo que ha cambiado
+git add . 		//para indicar que se quiere añadir todo lo que ha cambiado
 git commit -m "V7.5 arreglar doble encabezado myresults" //esto es como para darle un nombre de version a los cambios
 git push 	//esto es lo que manda la nueva versión a github
 
