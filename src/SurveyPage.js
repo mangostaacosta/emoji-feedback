@@ -33,18 +33,19 @@ function SurveyPage() {
     fetch("https://emoji-feedback.onrender.com/api/db-stats")
       .then(res => res.json())
       .then(data => {
-        console.log("Fetched data:", data);				
+        				
 				const formattedOffice = formatOfficeName(office);
-        //const officeData = data[formattedOffice];
 				const officeData = data[office];
+				/*
+				console.log("Fetched data:", data);
 				console.log("Fetched stats keys:", Object.keys(data));
 				console.log("Formatted office key:", formattedOffice);
 				console.log("Office data found:", officeData);
-				
+				*/
         if (officeData) {
           const rawVotes = officeData.total_votes || 0;
           const adjustedVotes = rawVotes < CUTOFF ? rawVotes + 10 : rawVotes;
-          const adjustedAverage = rawVotes < CUTOFF ? 4.0 : officeData.average_score;
+          const adjustedAverage = rawVotes < CUTOFF ? 3.9 : officeData.average_score;
 					console.log("Setting average:", adjustedAverage, "votes:", adjustedVotes);
           setAverage(adjustedAverage.toFixed(1));
           setVotes(adjustedVotes);
@@ -108,9 +109,6 @@ function SurveyPage() {
               Promedio actual ({votes} votos): {average}
             </p>
           )}
-					<p style={{ fontSize: "0.8rem", color: "gray" }}>
-            Debug — Oficina: {office} → {capitalizedOffice}
-          </p>
 				</>
       ) : (
 				<>
