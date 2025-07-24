@@ -39,6 +39,7 @@ function SurveyPage() {
           const rawVotes = officeData.total_votes || 0;
           const adjustedVotes = rawVotes < CUTOFF ? rawVotes + 10 : rawVotes;
           const adjustedAverage = rawVotes < CUTOFF ? 4.0 : officeData.average_score;
+					console.log("Setting average:", adjustedAverage, "votes:", adjustedVotes);
           setAverage(adjustedAverage.toFixed(1));
           setVotes(adjustedVotes);
         }
@@ -100,7 +101,7 @@ function SurveyPage() {
             <p style={{ marginTop: "1rem", fontWeight: "bold" }}>
               Promedio actual ({votes} votos): {average}
             </p>
-          )}				
+          )}
 				</>
       ) : (
 				<>
