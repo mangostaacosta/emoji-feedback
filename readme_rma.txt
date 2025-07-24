@@ -45,6 +45,7 @@ cd /c/Docs/rma/2019/Proyectos/smiling   //ir a la carpeta del proyecto
 git --version    //validar que si está instalado git
 git init
 git add . 		//para indicar que se quiere añadir todo lo que ha cambiado
+git status
 git commit -m "V7.5 arreglar doble encabezado myresults" //esto es como para darle un nombre de version a los cambios
 git push 	//esto es lo que manda la nueva versión a github
 

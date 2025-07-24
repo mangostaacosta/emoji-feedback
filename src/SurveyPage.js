@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 
 import "./App.css";
@@ -20,11 +20,33 @@ function formatOfficeName(slug) {
     .join(" ");
 }
 
-
+	
 function SurveyPage() {
   const { office } = useParams();
   const [submitted, setSubmitted] = useState(false);
   const [emoji, setEmoji] = useState(null);
+  const [average, setAverage] = useState(null);
+  const [votes, setVotes] = useState(null);
+  const CUTOFF = 5;
+	
+	useEffect(() => {
+    fetch("https://emoji-feedback.onrender.com/api/db-stats")
+      .then(res => res.json())
+      .then(data => {
+        const formattedOffice = formatOfficeName(office);
+        const officeData = data[formattedOffice];
+        if (officeData) {
+          const rawVotes = officeData.total_votes || 0;
+          const adjustedVotes = rawVotes < CUTOFF ? rawVotes + 10 : rawVotes;
+          const adjustedAverage = rawVotes < CUTOFF ? 4.0 : officeData.average_score;
+          setAverage(adjustedAverage.toFixed(1));
+          setVotes(adjustedVotes);
+        }
+      })
+      .catch(err => {
+        console.error("Failed to fetch office stats:", err);
+      });
+  }, [office]);	
 
   const handleClick = (face) => {
     setEmoji(face);
@@ -74,7 +96,12 @@ function SurveyPage() {
 						<button onClick={() => handleClick("muy_triste")}>😡</button>
           </div>
 					<p>Por favor califícanos, así podemos mejorar.</p>
-        </>
+					{average && (
+            <p style={{ marginTop: "1rem", fontWeight: "bold" }}>
+              Promedio actual ({votes} votos): {average}
+            </p>
+          )}				
+				</>
       ) : (
 				<>
 					<h2>Gracias por tu calificación:</h2>
