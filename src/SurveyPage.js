@@ -35,6 +35,10 @@ function SurveyPage() {
       .then(data => {
         const formattedOffice = formatOfficeName(office);
         const officeData = data[formattedOffice];
+				console.log("Fetched stats keys:", Object.keys(data));
+				console.log("Formatted office key:", formattedOffice);
+				console.log("Office data found:", officeData);
+				console.log("Setting average:", adjustedAverage, "votes:", adjustedVotes);
         if (officeData) {
           const rawVotes = officeData.total_votes || 0;
           const adjustedVotes = rawVotes < CUTOFF ? rawVotes + 10 : rawVotes;
