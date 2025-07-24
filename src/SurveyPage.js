@@ -33,7 +33,8 @@ function SurveyPage() {
     fetch("https://emoji-feedback.onrender.com/api/db-stats")
       .then(res => res.json())
       .then(data => {
-        const formattedOffice = formatOfficeName(office);
+        console.log("Fetched data:", data);				
+				const formattedOffice = formatOfficeName(office);
         const officeData = data[formattedOffice];
 				console.log("Fetched stats keys:", Object.keys(data));
 				console.log("Formatted office key:", formattedOffice);
