@@ -107,6 +107,9 @@ function SurveyPage() {
               Promedio actual ({votes} votos): {average}
             </p>
           )}
+					<p style={{ fontSize: "0.8rem", color: "gray" }}>
+            Debug — Oficina: {office} → {capitalizedOffice}
+          </p>
 				</>
       ) : (
 				<>
