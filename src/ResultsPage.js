@@ -12,9 +12,10 @@ function ResultsPage() {
       .catch((err) => {
         console.error("Failed to fetch DB stats:", err);
       });
+			console.log("Fetched data:", data);
   }, []);
 
-	console.log("Fetched data:", data);
+	
 
 	const emojiLabels = [
     { key: "muy_triste", label: "Muy Triste 😡" },
