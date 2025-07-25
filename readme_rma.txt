@@ -49,4 +49,4 @@ git status
 git commit -m "V7.5 arreglar doble encabezado myresults" //esto es como para darle un nombre de version a los cambios
 git push 	//esto es lo que manda la nueva versión a github
 
-
+cuando un "push" no genera el cambio que se está esperando, es posible que se deba a que no se propaga el commit/push a todas las plataformas. Especificamente VERCEL puede no estar haciendo el commit por un error de compilación, como me paso con el tema del promedio

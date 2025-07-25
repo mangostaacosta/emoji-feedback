@@ -1,6 +1,40 @@
 
 import { useEffect, useState } from "react";
 
+
+/*// version antigua para leer desde el CSV
+function ResultsPage() {
+  const [stats, setStats] = useState(null);
+
+  useEffect(() => {
+    //fetch("https://your-backend.onrender.com/api/emoji-stats")
+    fetch("https://emoji-feedback.onrender.com/api/emoji-stats")
+      .then((res) => res.json())
+      .then((data) => setStats(data));
+  }, []);
+
+  return (
+    <div className="App">
+      <h2>Emoji Feedback by Office</h2>
+      {!stats ? (
+        <p>Loading...</p>
+      ) : (
+        Object.entries(stats).map(([office, counts]) => (
+          <div key={office} style={{ marginBottom: "1.5rem" }}>
+            <h3>📍 {office}</h3>
+            <ul>
+              <li>😊 Happy: {counts.happy}</li>
+              <li>😐 Neutral: {counts.neutral}</li>
+              <li>😞 Sad: {counts.sad}</li>
+            </ul>
+          </div>
+        ))
+      )}
+    </div>
+  );
+}
+*/
+
 function ResultsPage() {
   const [stats, setStats] = useState(null);
 
@@ -38,29 +72,20 @@ function ResultsPage() {
                 <th key={key} style={{ borderBottom: "2px solid #ccc", padding: "0.5rem" }}>{label}</th>
               ))}
 							<th style={{ borderBottom: "2px solid #ccc", padding: "0.5rem" }}>Ultimo Update</th>
-							<th style={{ borderBottom: "2px solid #ccc", padding: "0.5rem" }}>Promedio</th>
-							<th style={{ borderBottom: "2px solid #ccc", padding: "0.5rem" }}>Conteo</th>
             </tr>
           </thead>
           <tbody>
 						{Object.entries(stats)
 							.sort(([, a], [, b]) => new Date(b.last_updated) - new Date(a.last_updated))
-							.map(([office, counts]) => {
-								const adjustedVotes = counts.total_votes || 0;
-                const average = counts.average_score;
-							
-							return (
+							.map(([office, counts]) => (
               <tr key={office}>
                 <td style={{ borderBottom: "1px solid #eee", fontWeight: "bold", padding: "0.5rem" }}>{office}</td>
                 {emojiLabels.map(({ key }) => (
                   <td key={key} style={{ textAlign: "center", padding: "0.5rem" }}>{counts[key] || 0}</td>
                 ))}
 								<td style={{ textAlign: "center", padding: "0.5rem" }}>{counts.last_updated || "—"}</td>
-								<td style={{ textAlign: "center", padding: "0.5rem" }}>{average.toFixed(1)}</td>
-								<td style={{ textAlign: "center", padding: "0.5rem" }}>{adjustedVotes}</td>
               </tr>
-            );
-						})}
+            ))}
           </tbody>
         </table>
       )}
