@@ -27,7 +27,7 @@ function SurveyPage() {
   const [emoji, setEmoji] = useState(null);
   const [average, setAverage] = useState(null);
   const [votes, setVotes] = useState(null);
-  const CUTOFF = 5;
+  const CUTOFF = 6;
 	
 	useEffect(() => {
     fetch("https://emoji-feedback.onrender.com/api/db-stats")
@@ -106,7 +106,7 @@ function SurveyPage() {
 					<p>Por favor califícanos, así podemos mejorar.</p>
 					{average && (
             <p style={{ marginTop: "1rem", fontWeight: "bold" }}>
-              Promedio actual ({votes} votos): {average}
+              Promedio actual: {average}
             </p>
           )}
 				</>
