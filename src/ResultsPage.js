@@ -49,7 +49,7 @@ function ResultsPage() {
 							.sort(([, a], [, b]) => new Date(b.last_updated) - new Date(a.last_updated))
 							.map(([office, counts]) => {
 								const adjustedVotes = counts.total_votes || 0;
-                const average = counts.average_score;
+                const average = counts.average_score || 0;
 							
 							return (
               <tr key={office}>
