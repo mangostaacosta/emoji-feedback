@@ -14,6 +14,8 @@ function ResultsPage() {
       });
   }, []);
 
+	console.log("Fetched data:", data);
+
 	const emojiLabels = [
     { key: "muy_triste", label: "Muy Triste 😡" },
     { key: "triste", label: "Triste 😞" },
@@ -66,32 +68,6 @@ function ResultsPage() {
       )}
     </div>
   );
-
-/* versión que sacaba los resultados en html sencillo
-  return (
-    <div className="App">
-      <h2>Emoji Feedback by Office</h2>
-      {!stats ? (
-        <p>Loading...</p>
-      ) : (
-        Object.entries(stats).map(([office, counts]) => (
-          <div key={office} style={{ marginBottom: "1.5rem" }}>
-            <h3>📍 {office}</h3>
-            <div>
-							<p>😡 Muy_triste: {counts.muy_triste}</p>
-							<p>😞 Triste: {counts.triste}</p>
-							<p>😐 Neutral: {counts.neutral}</p>
-							<p>😊 Feliz: {counts.feliz}</p>
-							<p>😁 Muy_feliz: {counts.muy_feliz}</p>
-              <p>😞 Sad: {counts.sad}</p>
-							<p>😊 Happy: {counts.happy}</p>
-            </div>
-          </div>
-        ))
-      )}
-    </div>
-  );
-*/
 
 }
 
