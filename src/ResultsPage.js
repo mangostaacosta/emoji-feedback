@@ -8,11 +8,14 @@ function ResultsPage() {
     //fetch("https://emoji-feedback.onrender.com/api/emoji-stats")
     fetch("https://emoji-feedback.onrender.com/api/db-stats")
       .then((res) => res.json())
-      .then((data) => setStats(data))
+			.then((data) => {
+				console.log("Fetched data:", data); //  Now inside scope
+				setStats(data);
+			})
       .catch((err) => {
         console.error("Failed to fetch DB stats:", err);
       });
-			console.log("Fetched data:", data);
+			
   }, []);
 
 	
