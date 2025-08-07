@@ -22,12 +22,15 @@ function formatOfficeName(slug) {
 
 	
 function SurveyPage() {
-  const { office } = useParams();
+  const MAXTEXT = 30;
+	const CUTOFF = 6;
+	
+	const { office } = useParams();
   const [submitted, setSubmitted] = useState(false);
   const [emoji, setEmoji] = useState(null);
   const [average, setAverage] = useState(null);
   const [votes, setVotes] = useState(null);
-  const CUTOFF = 6;
+	const [comment, setComment] = useState("");
 	
 	useEffect(() => {
     fetch("https://emoji-feedback.onrender.com/api/db-stats")
@@ -105,12 +108,27 @@ function SurveyPage() {
 						<button onClick={() => handleClick("feliz")}>😊</button>
 						<button onClick={() => handleClick("muy_feliz")}>😁</button>
           </div>
-					<p>Por favor califícanos, así podemos mejorar.</p>
 					{average && (
             <p style={{ marginTop: "1rem", fontWeight: "bold" }}>
               Promedio actual: {average}, Votos durante la semana: {votes}
             </p>
           )}
+					<p>Por favor califícanos, así podemos mejorar.</p>
+					{/* Textarea appears after emoji is chosen */}
+					{emoji && (
+						<>
+							<textarea
+								placeholder="Puedes opcionlamente usar hasta 3 palabras para explicar tu voto"
+								value={comment}
+								onChange={(e) => {
+									if (e.target.value.length <= MAXTEXT) {
+										setComment(e.target.value);
+									}
+								}}
+							/>
+							<p>{comment.length} / {MAXTEXT} caracteres</p>
+						</>
+					)}
 				</>
       ) : (
 				<>
