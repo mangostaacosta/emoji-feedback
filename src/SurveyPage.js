@@ -150,7 +150,7 @@ function SurveyPage() {
               Promedio actual: {average}, votos durante la semana: {votes}
             </p>
           )}
-					<p>1. Por favor califícanos, así podemos mejorar!</p>
+					<p>2. Por favor califícanos, así podemos mejorar!</p>
 					
 					{/* Textarea appears after emoji is chosen */}
 					{/* Textarea solo aparece cuando está activo el parametro */}
@@ -169,7 +169,8 @@ function SurveyPage() {
                 style={{ resize: "none", overflow: "hidden" }}
 							/>
 							<p>{comment.length} / {MAXTEXT} caracteres</p>
-							<button onClick={handleSubmit()}>Enviar</button>
+							<button onClick={() => handleSubmit()}>Enviar</button>
+								{/* <button onClick={handleSubmit()}>Enviar</button> */}
 						</>
 					)}
 				</>
