@@ -75,6 +75,8 @@ function SurveyPage() {
       }),
     });
 		
+		average = average + 1 ; //ensayo RMA
+		
 		// Reset after 5 seconds
 		setTimeout(() => {
 			setSubmitted(false);
@@ -97,11 +99,11 @@ function SurveyPage() {
         <>
           <h2>¿Cómo te has sentido esta semana con {capitalizedOffice}?</h2>
           <div className="emoji-buttons">            
-						<button onClick={() => handleClick("muy_feliz")}>😁</button>
-						<button onClick={() => handleClick("feliz")}>😊</button>
-						<button onClick={() => handleClick("neutral")}>😐</button>
-						<button onClick={() => handleClick("triste")}>😞</button>
 						<button onClick={() => handleClick("muy_triste")}>😡</button>
+						<button onClick={() => handleClick("triste")}>😞</button>
+						<button onClick={() => handleClick("neutral")}>😐</button>
+						<button onClick={() => handleClick("feliz")}>😊</button>
+						<button onClick={() => handleClick("muy_feliz")}>😁</button>
           </div>
 					<p>Por favor califícanos, así podemos mejorar.</p>
 					{average && (

@@ -1,8 +1,6 @@
 
-20240713 funcionalidad de mostrar promedio en tiempo real de la encuesta
-	la funcionalidad nueva no ha sido ni probada no desplegada
-	se creo un archivo SurveyPage2.js con el nuevo código
-	una forma de desplegar sería renombrar el archivo actual SurveyPage.js a un nombre de backup y despues de eso renombrar el 2 a SurveyPage.js 
+20240713 funcionalidad de mostrar promedio en tiempo real de la encuesta	
+	la funcionalidad ya quedó desplegada OK (con mejoras de eficiencia futuras)
 	
 
 

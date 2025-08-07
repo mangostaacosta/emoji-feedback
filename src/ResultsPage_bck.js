@@ -1,3 +1,4 @@
+//ResultsPage_bck.js: versión previa a mostrar el promedio y conteo
 
 import { useEffect, useState } from "react";
 
