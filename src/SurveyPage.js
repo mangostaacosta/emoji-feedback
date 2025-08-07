@@ -75,7 +75,7 @@ function SurveyPage() {
       }),
     });
 		
-		average = average + 1 ; //ensayo RMA
+		//average = average + 1 ; //ensayo RMA
 		
 		// Reset after 5 seconds
 		setTimeout(() => {
@@ -108,14 +108,14 @@ function SurveyPage() {
 					<p>Por favor califícanos, así podemos mejorar.</p>
 					{average && (
             <p style={{ marginTop: "1rem", fontWeight: "bold" }}>
-              Promedio actual: {average}
+              Promedio actual: {average}, Votos durante la semana: {votes}
             </p>
           )}
 				</>
       ) : (
 				<>
-					<h2>Gracias por tu calificación:</h2>
-					<h2>[{emoji}]</h2>
+					<h2>Gracias por tu calificación:({emoji})</h2>
+					<h3>Mañana tu voto se verá reflejado en las estadísticas</h3>
 					<p>Powered By SOPHIX_TOO ®</p>
 				</>
       )}
