@@ -24,7 +24,7 @@ function formatOfficeName(slug) {
 function SurveyPage() {
   const MAXTEXT = 33;
 	const CUTOFF = 6;
-	const TEXTINPUT = true; // Toggle this to false to disable comment box and require only one click
+	const TEXTINPUT = false; // Toggle this to false to disable comment box and require only one click
 	
 	const { office } = useParams();
   const [submitted, setSubmitted] = useState(false);
