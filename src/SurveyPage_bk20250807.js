@@ -22,15 +22,12 @@ function formatOfficeName(slug) {
 
 	
 function SurveyPage() {
-  const MAXTEXT = 30;
-	const CUTOFF = 6;
-	
-	const { office } = useParams();
+  const { office } = useParams();
   const [submitted, setSubmitted] = useState(false);
   const [emoji, setEmoji] = useState(null);
   const [average, setAverage] = useState(null);
   const [votes, setVotes] = useState(null);
-	const [comment, setComment] = useState("");
+  const CUTOFF = 6;
 	
 	useEffect(() => {
     fetch("https://emoji-feedback.onrender.com/api/db-stats")
@@ -59,37 +56,6 @@ function SurveyPage() {
       });
   }, [office]);	
 
-  const handleEmojiSelect = (face) => {
-    setEmoji(face);
-  };
-	
-  const handleSubmit = () => {
-    setSubmitted(true);
-		
-		//Para ejecutar backend en localhost
-    //fetch("http://localhost:5000/api/feedback", {
-		//Para ejecutar backend en RENDER 
-    fetch("https://emoji-feedback.onrender.com/api/feedback", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        emoji,
-        office,
-        timestamp: new Date().toISOString(),
-        comment: comment.trim(),
-      }),
-    });
-
-    setTimeout(() => {
-      setSubmitted(false);
-      setEmoji(null);
-      setComment("");
-    }, 5000);
-  };
-
-/*
   const handleClick = (face) => {
     setEmoji(face);
     setSubmitted(true);
@@ -118,7 +84,6 @@ function SurveyPage() {
 		}, 5000);		
 		
   };
-*/
 
   /*
 	const capitalizedOffice = office
@@ -134,34 +99,18 @@ function SurveyPage() {
         <>
           <h2>¿Cómo te has sentido esta semana con {capitalizedOffice}?</h2>
           <div className="emoji-buttons">            
-						<button onClick={() => handleEmojiSelect("muy_triste")}>😡</button>
-						<button onClick={() => handleEmojiSelect("triste")}>😞</button>
-						<button onClick={() => handleEmojiSelect("neutral")}>😐</button>
-						<button onClick={() => handleEmojiSelect("feliz")}>😊</button>
-						<button onClick={() => handleEmojiSelect("muy_feliz")}>😁</button>
+						<button onClick={() => handleClick("muy_triste")}>😡</button>
+						<button onClick={() => handleClick("triste")}>😞</button>
+						<button onClick={() => handleClick("neutral")}>😐</button>
+						<button onClick={() => handleClick("feliz")}>😊</button>
+						<button onClick={() => handleClick("muy_feliz")}>😁</button>
           </div>
+					<p>Por favor califícanos, así podemos mejorar.</p>
 					{average && (
             <p style={{ marginTop: "1rem", fontWeight: "bold" }}>
-              Promedio actual: {average}, votos durante la semana: {votes}
+              Promedio actual: {average}, Votos durante la semana: {votes}
             </p>
           )}
-					<p>Por favor califícanos, así podemos mejorar!</p>
-					
-					{/* Textarea appears after emoji is chosen */}
-					{emoji && (
-						<>
-							<textarea
-								placeholder="Puedes opcionalmente usar hasta 3 palabras para explicar tu voto"
-								value={comment}
-								onChange={(e) => {
-									if (e.target.value.length <= MAXTEXT) {
-										setComment(e.target.value);
-									}
-								}}
-							/>
-							<p>{comment.length} / {MAXTEXT} caracteres</p>
-						</>
-					)}
 				</>
       ) : (
 				<>
