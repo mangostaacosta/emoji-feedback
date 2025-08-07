@@ -31,7 +31,9 @@ app.use(express.json());
 let feedbackData = [];
 
 app.post("/api/feedback", (req, res) => {
-	const { emoji, office, timestamp } = req.body;
+	//const { emoji, office, timestamp } = req.body;
+	const { emoji, office, timestamp, comment } = req.body;
+	const userComment = req.body.comment;
 	
 	const userIp = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
   const userAgent = req.headers["user-agent"];
@@ -42,7 +44,8 @@ app.post("/api/feedback", (req, res) => {
     return res.status(400).json({ error: "Missing fields" });
   }
 	
-	const row = `${timestamp},${office},${emoji}\n`;
+	//const row = `${timestamp},${office},${emoji}\n`;
+	const row = `${timestamp},${office},${emoji},"${userComment || ""}"\n`;
 	const filePath = path.join(__dirname, "feedback.csv");
 	
 	fs.appendFile(filePath, row, (err) => {
@@ -76,7 +79,15 @@ app.post("/api/feedback", (req, res) => {
 	
   supabase
     .from("feedback")
-    .insert([{ emoji, office, timestamp , ip_user_agent: ipUserAgent }])
+    .insert([
+			{ 
+				emoji, 
+				office, 
+				timestamp, 
+				ip_user_agent: ipUserAgent, 
+				comment: userComment?.trim() || "", 
+			}
+		])
     .then(({ data, error }) => {
       if (error) {
         console.error("Supabase insert error:", error);

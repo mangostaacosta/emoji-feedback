@@ -22,7 +22,7 @@ function formatOfficeName(slug) {
 
 	
 function SurveyPage() {
-  const MAXTEXT = 30;
+  const MAXTEXT = 33;
 	const CUTOFF = 6;
 	
 	const { office } = useParams();
@@ -151,15 +151,18 @@ function SurveyPage() {
 					{emoji && (
 						<>
 							<textarea
-								placeholder="Puedes opcionalmente usar hasta 3 palabras para explicar tu voto"
+								placeholder="Usa hasta 3 palabras para explicar tu voto"
 								value={comment}
 								onChange={(e) => {
 									if (e.target.value.length <= MAXTEXT) {
 										setComment(e.target.value);
 									}
 								}}
+								rows={1}
+                style={{ width: "100%", resize: "none", overflow: "hidden" }}
 							/>
 							<p>{comment.length} / {MAXTEXT} caracteres</p>
+							<button onClick={handleSubmit}>Enviar</button>
 						</>
 					)}
 				</>
