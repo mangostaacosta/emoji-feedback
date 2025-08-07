@@ -150,7 +150,7 @@ function SurveyPage() {
               Promedio actual: {average}, votos durante la semana: {votes}
             </p>
           )}
-					<p>2. Por favor califícanos, así podemos mejorar!</p>
+					<p>Por favor califícanos, así podemos mejorar!</p>
 					
 					{/* Textarea appears after emoji is chosen */}
 					{/* Textarea solo aparece cuando está activo el parametro */}
