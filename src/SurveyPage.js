@@ -67,26 +67,26 @@ function SurveyPage() {
     }
   };
 	
-	
-  const handleSubmit = () => {
+	const handleSubmit = (selectedEmoji = emoji, providedComment = comment) => {
     setSubmitted(true);
-		
-		//Para ejecutar backend en localhost
+
+    //Para ejecutar backend en localhost
     //fetch("http://localhost:5000/api/feedback", {
+		
 		//Para ejecutar backend en RENDER 
-    fetch("https://emoji-feedback.onrender.com/api/feedback", {
+		fetch("https://emoji-feedback.onrender.com/api/feedback", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        emoji,
+        emoji: selectedEmoji,
         office,
         timestamp: new Date().toISOString(),
-        comment: comment.trim(),
+        comment: providedComment.trim(),
       }),
     });
-
+		
     setTimeout(() => {
       setSubmitted(false);
       setEmoji(null);
@@ -94,7 +94,7 @@ function SurveyPage() {
     }, 5000);
   };
 
-
+	//esta fusnión es del legado cuando no se tenía la opción de comentario de texto
   const handleClick = (face) => {
     setEmoji(face);
     setSubmitted(true);
