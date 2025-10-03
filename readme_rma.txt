@@ -44,7 +44,13 @@ git --version    //validar que si está instalado git
 git init
 git add . 		//para indicar que se quiere añadir todo lo que ha cambiado
 git status
+git log -1    //averiguar el nombre del último commit
 git commit -m "V7.5 arreglar doble encabezado myresults" //esto es como para darle un nombre de version a los cambios
 git push 	//esto es lo que manda la nueva versión a github
+
+git add .
+git commit -m "V8.0 siguiente cambio y commit" 
+git push
+
 
 cuando un "push" no genera el cambio que se está esperando, es posible que se deba a que no se propaga el commit/push a todas las plataformas. Especificamente VERCEL puede no estar haciendo el commit por un error de compilación, como me paso con el tema del promedio
