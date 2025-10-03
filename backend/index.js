@@ -176,6 +176,7 @@ app.get("/api/db-stats", (req, res) => {
   supabase
     .from("feedback")
 		.select("office, emoji, timestamp")
+		.order('timestamp', { ascending: false }).limit(1000)
     .then(({ data, error }) => {
       if (error) {
         console.error("Supabase query error:", error);
