@@ -1,4 +1,10 @@
 
+20251102 
+	estoy buscando incorporar una tabla con nombes de cada URL y también con preguntas customizadas y a futuro guardar el average
+	en este cambio el Chatgpt me está sugieriendo unos cambios grandes en index.js del backen por los quq generaré backup con la versión V8.6 (la cula ya tenía lgunos query nuevos que funcionaron sin novedad (esa versión quedará de backup (index_back.js) y trabajare la nueva con los cambios fuertes a ver si la logro
+	
+
+
 20240713 funcionalidad de mostrar promedio en tiempo real de la encuesta	
 	la funcionalidad ya quedó desplegada OK (con mejoras de eficiencia futuras)
 	

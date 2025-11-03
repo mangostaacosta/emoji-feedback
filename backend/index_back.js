@@ -173,56 +173,45 @@ app.get("/api/emoji-stats", (req,res) => {
 });
 
 app.get("/api/db-stats", (req, res) => {
-	try {
-    // Fetch latest feedback data
-    const { data: feedbackData, error: feedbackError } = await supabase
-      .from("feedback")
-      .select("office, emoji, timestamp")
-      .order("timestamp", { ascending: false })
-      .limit(900);
-
-    if (feedbackError) {
-      console.error("Supabase query error:", feedbackError);
-      return res.status(500).json({ error: "Failed to fetch feedback data." });
-    }
-		
-		
+  supabase
+    .from("feedback")
+		.select("office, emoji, timestamp")
+		.order('timestamp', { ascending: false })
+		.limit(900)
+    .then(({ data, error }) => {
+      if (error) {
+        console.error("Supabase query error:", error);
+        return res.status(500).json({ error: "Failed to fetch feedback data." });
+      }
+			
 		// Fetch mapping of office_slug → office_name
-    const { data: officeMeta, error: officeError } = await supabase
-      .from("offices")
-      .select("office_slug, office_name");
+		const { data: officeMeta } = await supabase
+			.from("offices")
+			.select("office_slug, office_name");
 
-    if (officeError) {
-      console.warn("Warning: could not fetch office names:", officeError.message);
-    }
-		
-		// Create lookup map for friendly names
 		const officeNameMap = {};
-		 if (officeMeta) {
-      officeMeta.forEach(({ office_slug, office_name }) => {
-        officeNameMap[office_slug] = office_name;
-      });
-    }
-		
-	
-		const emojiScores = {
-			muy_triste: 1,
-			triste: 2,
-			neutral: 3,
-			feliz: 4,
-			muy_feliz: 5,
-		};
-		
-		const countsByOffice = {};
+		officeMeta.forEach(({ office_slug, office_name }) => {
+			officeNameMap[office_slug] = office_name;
+		});
+				
+			const emojiScores = {
+        muy_triste: 1,
+        triste: 2,
+        neutral: 3,
+        feliz: 4,
+        muy_feliz: 5,
+      };
+			
+			const countsByOffice = {};
 
-		data.forEach(({ office, emoji, timestamp }) => {
-      if (!office || !emoji) return;
+			data.forEach(({ office, emoji, timestamp }) => {
+        if (!office || !emoji) return;
 
-      const normalizedOffice = office.trim();
-      const normalizedEmoji = emoji.trim();
+        const normalizedOffice = office.trim();
+        const normalizedEmoji = emoji.trim();
 
-      if (!countsByOffice[normalizedOffice]) {
-        countsByOffice[normalizedOffice] = { 
+        if (!countsByOffice[normalizedOffice]) {
+          countsByOffice[normalizedOffice] = { 
 						muy_feliz: 0,
 						feliz: 0, 
 						neutral: 0, 
@@ -234,38 +223,34 @@ app.get("/api/db-stats", (req, res) => {
 						total_votes: 0,
             score_sum: 0,
             average_score: 0,
-						office_name: officeNameMap[normalizedOffice] || normalizedOffice,
-				};
-      }
+					};
+        }
 
-			if (countsByOffice[normalizedOffice][normalizedEmoji] !== undefined) {
-				countsByOffice[normalizedOffice][normalizedEmoji]++;
-				countsByOffice[normalizedOffice].total_votes++;
-				countsByOffice[normalizedOffice].score_sum += emojiScores[normalizedEmoji];
-			}
+        if (countsByOffice[normalizedOffice][normalizedEmoji] !== undefined) {
+          countsByOffice[normalizedOffice][normalizedEmoji]++;
+					countsByOffice[normalizedOffice].total_votes++;
+					countsByOffice[normalizedOffice].score_sum += emojiScores[normalizedEmoji];
+        }
+				
+				// Update last_updated if newer timestamp is found
+        const currentLatest = new Date(countsByOffice[normalizedOffice].last_updated);
+        const currentTimestamp = new Date(timestamp);
+        if (currentTimestamp > currentLatest) {
+          countsByOffice[normalizedOffice].last_updated = timestamp;
+        }
+				
+      });
 			
-			// Update last_updated if newer timestamp is found
-			const currentLatest = new Date(countsByOffice[normalizedOffice].last_updated);
-			const currentTimestamp = new Date(timestamp);
-			if (currentTimestamp > currentLatest) {
-				countsByOffice[normalizedOffice].last_updated = timestamp;
-			}
-	
-		});
-			
-		// Finalize average calculation
-		Object.values(countsByOffice).forEach((officeStats) => {
-			if (officeStats.total_votes > 0) {
-				officeStats.average_score = officeStats.score_sum / officeStats.total_votes;
-			}
-			delete officeStats.score_sum; // optional cleanup
-		});
+			// Finalize average calculation
+      Object.values(countsByOffice).forEach((officeStats) => {
+        if (officeStats.total_votes > 0) {
+          officeStats.average_score = officeStats.score_sum / officeStats.total_votes;
+        }
+        delete officeStats.score_sum; // optional cleanup
+      });
 
-		res.json(countsByOffice);
-  } catch (err) {
-    console.error("Unexpected error in /api/db-stats:", err);
-    res.status(500).json({ error: "Internal server error." });
-  }	
+      res.json(countsByOffice);
+    });
 });
 
 

@@ -39,7 +39,8 @@ function ResultsPage() {
         <table style={{ borderCollapse: "collapse", width: "100%", maxWidth: "800px", margin: "2rem auto" }}>
           <thead>
             <tr>
-              <th style={{ borderBottom: "2px solid #ccc", textAlign: "left", padding: "0.5rem" }}>Office</th>
+              <th style={{ borderBottom: "2px solid #ccc", textAlign: "left", padding: "0.5rem" }}>Office URL</th>
+							<th style={{ borderBottom: "2px solid #ccc", padding: "0.5rem" }}>Oficina</th>
               {emojiLabels.map(({ key, label }) => (
                 <th key={key} style={{ borderBottom: "2px solid #ccc", padding: "0.5rem" }}>{label}</th>
               ))}
@@ -58,6 +59,7 @@ function ResultsPage() {
 							return (
               <tr key={office}>
                 <td style={{ borderBottom: "1px solid #eee", fontWeight: "bold", padding: "0.5rem" }}>{office}</td>
+								<td style={{ borderBottom: "1px solid #eee", padding: "0.5rem" }}>{counts.office_name || office}</td>
                 {emojiLabels.map(({ key }) => (
                   <td key={key} style={{ textAlign: "center", padding: "0.5rem" }}>{counts[key] || 0}</td>
                 ))}
