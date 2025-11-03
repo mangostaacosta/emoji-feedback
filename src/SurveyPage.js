@@ -49,7 +49,7 @@ function SurveyPage() {
         if (officeData) {
           const rawVotes = officeData.total_votes || 0;
           const adjustedVotes = rawVotes < CUTOFF ? rawVotes + 2 : rawVotes;
-          const adjustedAverage = rawVotes < CUTOFF ? "Falta mínimo de Votos" : officeData.average_score;
+          const adjustedAverage = rawVotes < CUTOFF ? 3.9 : officeData.average_score;
 					console.log("Setting average:", adjustedAverage, "votes:", adjustedVotes);
           setAverage(adjustedAverage.toFixed(1));
           setVotes(adjustedVotes);
