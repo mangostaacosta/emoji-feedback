@@ -23,7 +23,7 @@ function formatOfficeName(slug) {
 	
 function SurveyPage() {
   const MAXTEXT = 33;
-	const CUTOFF = 6;
+	const CUTOFF = 3;
 	const TEXTINPUT = true; // Toggle this to false to disable comment box and require only one click
 	
 	const { office } = useParams();
@@ -48,8 +48,8 @@ function SurveyPage() {
 				*/
         if (officeData) {
           const rawVotes = officeData.total_votes || 0;
-          const adjustedVotes = rawVotes < CUTOFF ? rawVotes + 10 : rawVotes;
-          const adjustedAverage = rawVotes < CUTOFF ? 3.9 : officeData.average_score;
+          const adjustedVotes = rawVotes < CUTOFF ? rawVotes + 2 : rawVotes;
+          const adjustedAverage = rawVotes < CUTOFF ? "Falta mínimo de Votos" : officeData.average_score;
 					console.log("Setting average:", adjustedAverage, "votes:", adjustedVotes);
           setAverage(adjustedAverage.toFixed(1));
           setVotes(adjustedVotes);
