@@ -190,7 +190,7 @@ app.get("/api/db-stats", async (req, res) => {
 		
 		// Fetch mapping of office_slug → office_name
     const { data: officeMeta, error: officeError } = await supabase
-      .from("offices")
+      .from("tbl_office_nombres")
       .select("office_slug, office_name");
 
     if (officeError) {
