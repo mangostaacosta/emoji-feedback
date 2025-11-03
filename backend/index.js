@@ -172,7 +172,8 @@ app.get("/api/emoji-stats", (req,res) => {
   }	
 });
 
-app.get("/api/db-stats", (req, res) => {
+//app.get("/api/db-stats", (req, res) => {
+app.get("/api/db-stats", async (req, res) => {
 	try {
     // Fetch latest feedback data
     const { data: feedbackData, error: feedbackError } = await supabase
