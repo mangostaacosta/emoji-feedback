@@ -216,7 +216,7 @@ app.get("/api/db-stats", async (req, res) => {
 		
 		const countsByOffice = {};
 
-		data.forEach(({ office, emoji, timestamp }) => {
+		feedbackData.forEach(({ office, emoji, timestamp }) => {
       if (!office || !emoji) return;
 
       const normalizedOffice = office.trim();
