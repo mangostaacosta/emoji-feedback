@@ -13,18 +13,28 @@ https://emoji-feedback.onrender.com
 https://dashboard.render.com/web/srv-d0245qbe5dus73bdkhn0/logs
 https://supabase.com/dashboard/project/juqoxefjgqqhyhwglhjh/editor/17267
 
+
+URLS DEL WEB APP
+https://emoji-feedback-lime.vercel.app/results/
+https://emoji-feedback-lime.vercel.app/survey/mauricio
+https://emoji-feedback-lime.vercel.app/survey/mauricio-001
+
+(el pedazo de mauricio-001 se llama SLUG)
+
 usar consola de GIT BASH que está en el escritorio
  
 
 C:\Docs\rma\2019\Proyectos\smiling
 cd /c/Docs/rma/2019/Proyectos/smiling
 npm start
+	ojo 20251102: este comando me sacó un error creo que por desactualización de los módulos
 
 node index.js
-
+	ojo 20251102: este comando me sacó un error diec que no econtró index.js (lo cual es sensato porque no hay en esa carpeta)
+	
 instrucciones del aplicativo en GitHub y React
 the frontend is based on React Framework (entorno) hosted in VERCEL
-the bachend is based on Express.js hosted in REDNER
+the backend is based on Express.js hosted in REDNER
 the database is in PostgreSQL hosted in SUPABASE
 I am deploying from GITHUB
 

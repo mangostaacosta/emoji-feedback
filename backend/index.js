@@ -176,13 +176,24 @@ app.get("/api/db-stats", (req, res) => {
   supabase
     .from("feedback")
 		.select("office, emoji, timestamp")
-		.order('timestamp', { ascending: false }).limit(2000)
+		.order('timestamp', { ascending: false })
+		.limit(900)
     .then(({ data, error }) => {
       if (error) {
         console.error("Supabase query error:", error);
         return res.status(500).json({ error: "Failed to fetch feedback data." });
       }
 			
+		// Fetch mapping of office_slug → office_name
+		const { data: officeMeta } = await supabase
+			.from("offices")
+			.select("office_slug, office_name");
+
+		const officeNameMap = {};
+		officeMeta.forEach(({ office_slug, office_name }) => {
+			officeNameMap[office_slug] = office_name;
+		});
+				
 			const emojiScores = {
         muy_triste: 1,
         triste: 2,
