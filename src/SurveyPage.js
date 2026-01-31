@@ -24,7 +24,7 @@ function formatOfficeName(slug) {
 function SurveyPage() {
   const MAXTEXT = 33;
 	const CUTOFF = 3;
-	const TEXTINPUT = true; // Toggle this to false to disable comment box and require only one click
+	const TEXTINPUT = false; // Toggle this to false to disable comment box and require only one click
 	
 	const { office } = useParams();
   const [submitted, setSubmitted] = useState(false);
@@ -137,7 +137,7 @@ function SurveyPage() {
     <div className="App">
       {!submitted ? (
         <>
-          <h2>¿Cómo te has sentido esta semana con {capitalizedOffice}?</h2>
+          <h2>Califica tu experiencia hoy con {capitalizedOffice}:</h2>
           <div className="emoji-buttons">            
 						<button onClick={() => handleEmojiSelect("muy_triste")}>😡</button>
 						<button onClick={() => handleEmojiSelect("triste")}>😞</button>
