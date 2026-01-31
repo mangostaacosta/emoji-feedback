@@ -31,7 +31,7 @@ MANUAL DE ARRANQUE DE USUARIO
 
 instrucciones del aplicativo en GitHub y React
 the frontend is based on React Framework (entorno) hosted in VERCEL
-the backend is based on Express.js hosted in REDNER
+the backend is based on Express.js hosted in RENDER
 the database is in PostgreSQL hosted in SUPABASE
 I am deploying from GITHUB
 
