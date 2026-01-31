@@ -32,9 +32,9 @@ function MyResultsPage() {
   }
 
    
-	const formattedOffice = formatOfficeName(office);  
+	//const formattedOffice = formatOfficeName(office);  
 	//typeof formattedOffice; //20260131 para corregir error e compilación en VERCEL por no uso de variable
-	formattedOffice && null;
+	
 	
 	//<h2>Feedback Results for {formattedOffice}</h2>
 	//<p>😞 Sad: {stats.sad}</p>
