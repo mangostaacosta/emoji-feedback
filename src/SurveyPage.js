@@ -94,6 +94,7 @@ function SurveyPage() {
     }, 5000);
   };
 
+	/*
 	//esta fusnión es del legado cuando no se tenía la opción de comentario de texto
   const handleClick = (face) => {
     setEmoji(face);
@@ -123,6 +124,7 @@ function SurveyPage() {
 		}, 5000);		
 		
   };
+	*/
 
 
   /*
